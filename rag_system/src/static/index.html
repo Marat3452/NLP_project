@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Система - Вопросы по документам</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-robot"></i>
+                    RAG Система
+                </h1>
+                <p class="subtitle">Загрузите документ и задавайте вопросы</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- Секция загрузки документа -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-card">
+                    <div class="upload-header">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h2>Загрузка документа</h2>
+                        <p>Поддерживаются только файлы формата DOCX</p>
+                    </div>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-file-word"></i>
+                            <p>Перетащите файл сюда или нажмите для выбора</p>
+                            <input type="file" id="fileInput" accept=".docx" hidden>
+                            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                                Выбрать файл
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Обработка документа...</p>
+                    </div>
+                    
+                    <div class="upload-status" id="uploadStatus"></div>
+                </div>
+            </section>
+
+            <!-- Секция чата -->
+            <section class="chat-section" id="chatSection" style="display: none;">
+                <div class="chat-card">
+                    <div class="chat-header">
+                        <i class="fas fa-comments"></i>
+                        <h2>Чат с документом</h2>
+                        <div class="document-status">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Документ загружен</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Привет! Документ успешно загружен. Теперь вы можете задавать вопросы по его содержанию.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="chat-input">
+                            <input type="text" id="questionInput" placeholder="Задайте вопрос по документу..." maxlength="500">
+                            <button id="sendButton" onclick="sendQuestion()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="input-hint">
+                            Нажмите Enter для отправки
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
